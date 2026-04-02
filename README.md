@@ -1,72 +1,98 @@
-# GitHub Pages 静态站说明
+# 个人的研究生阅读书目推荐
 
-这是一个可直接部署到 **GitHub Pages** 的纯静态站点，当前包含：
+这是一个部署在 **GitHub Pages** 上的静态站点，用来整理一份面向 **研0阶段** 的阅读导航。
 
-- `index.html`：个人首页 / 资源入口页
+当前站点包含：
+
+- `index.html`：首页 / 入口页
 - `reading.html`：阅读导航页
-- `links.html`：后续 URL 链接预留页
+- `links.html`：后续补充 URL 的预留页
+- `content/reading.md`：阅读书目主内容来源
 
-## 1. 如何提交PR更新阅读页
+仓库地址：
 
-阅读导航页是Markdown驱动，以后主要编辑`content/reading.md`即可。
-`reading.html` 会自动加载并解析这个文件。
+- <https://github.com/Huoyuuu/personal-graduate-reading-guide>
 
-### Markdown 格式
+---
 
-建议保持下面这种结构：
+## 1. 如何更新阅读页
+阅读导航页是 **Markdown 驱动** 的。  
+后续如果要增删改书目，主要编辑：
 
+```text
+content/reading.md
+```
+
+`reading.html` 会自动读取并解析这个文件。
+
+---
+
+## 2. 当前 `reading.md` 的结构
+页面本身用一级标题
 ```md
 # 搜集到的参考阅读书目
-简介：这里写页面开头说明
+简介：这里写页面说明
 面向：研0
 顺序：由易到难
+```
 
-## 通用主线
-说明：这里写这个分组的简短说明
+每个分类用二级标题：
 
+```md
+## 阅读
+```
+
+每本材料用三级标题加字段：
+
+```md
 ### How to Read a Paper
 作者：S. Keshav
 难度：★☆☆☆☆
-状态：已整理
-简介：这里写简短可见说明
-我的想法：这里写你自己的补充判断
-```
-
-### 如果暂时还没读完
-
-你可以这样写：
-
-```md
-### 某本书
-作者：某作者
-难度：★★★★☆
-状态：未读完
-简介：先写一个简短说明
+状态：待整理
+简介：[论文链接](https://example.com/paper.pdf)
 我的想法：
 ```
 
-这样页面会自动显示一个占位提示：
+---
 
-```text
-还没读完，之后补。
-```
+## 3. 字段约定
 
-### 如果还没开始读
+### 使用字段
 
-可以写：
+- `作者`
+- `难度`
+- `状态`
+- `简介`
+- `我的想法`
+---
+
+## 4. 链接怎么写
+
+`简介` 字段里可以直接放链接，推荐写成 Markdown 链接：
 
 ```md
-状态：待读
-我的想法：
+简介：[How to Read a Paper](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf)
+```
+页面会自动把这些链接整理成更适合阅读的链接样式。
+如果链接后面还有补充说明，也可以直接写在同一行：
+
+```md
+简介：[讲稿链接](https://example.com/talk.pdf) 侧重讲解怎样做汇报
 ```
 
-页面会自动显示：
+---
 
+## 5. 如何通过评论或 PR 提建议
+
+阅读页底部已经接入 GitHub 账号评论区。  
+如果只是想补充建议、提醒更新、推荐新材料，可以直接到阅读页底部评论。
+如果需要直接修改内容，最直接的方法是提交 PR，主要改：
 ```text
-还没开始读，之后补。
+content/reading.md
 ```
+---
 
-## 2. 本地预览
+## 6. 本地预览
 
 如果你本地有 Python，可以在当前目录运行：
 
@@ -81,3 +107,11 @@ http://localhost:8000
 ```
 
 注意：因为 `reading.html` 要通过 `fetch` 读取 `content/reading.md`，所以**不要直接双击 HTML 文件打开**，而要用本地服务器预览。
+
+---
+
+## 7. 线上地址
+
+GitHub Pages 地址：
+- 首页：<https://huoyuuu.github.io/personal-graduate-reading-guide/>
+- 阅读页：<https://huoyuuu.github.io/personal-graduate-reading-guide/reading.html>

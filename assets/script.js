@@ -410,9 +410,13 @@ function initComments() {
     repoId: section.dataset.giscusRepoId || section.dataset.repoId || "",
     category: section.dataset.giscusCategory || section.dataset.category || "",
     categoryId: section.dataset.giscusCategoryId || section.dataset.categoryId || "",
-    mapping: section.dataset.giscusMapping || "pathname",
-    lang: section.dataset.giscusLang || "zh-CN",
-    theme: section.dataset.giscusTheme || "preferred_color_scheme",
+    mapping: section.dataset.mapping || section.dataset.giscusMapping || "pathname",
+    lang: section.dataset.lang || section.dataset.giscusLang || "zh-CN",
+    theme: section.dataset.theme || section.dataset.giscusTheme || "preferred_color_scheme",
+    strict: section.dataset.strict || "0",
+    reactionsEnabled: section.dataset.reactionsEnabled || "1",
+    emitMetadata: section.dataset.emitMetadata || "0",
+    inputPosition: section.dataset.inputPosition || "bottom",
   };
 
   const isConfigured = [config.repo, config.repoId, config.category, config.categoryId].every(
@@ -449,10 +453,10 @@ function initComments() {
   script.setAttribute("data-category", config.category);
   script.setAttribute("data-category-id", config.categoryId);
   script.setAttribute("data-mapping", config.mapping);
-  script.setAttribute("data-strict", "0");
-  script.setAttribute("data-reactions-enabled", "1");
-  script.setAttribute("data-emit-metadata", "0");
-  script.setAttribute("data-input-position", "bottom");
+  script.setAttribute("data-strict", config.strict);
+  script.setAttribute("data-reactions-enabled", config.reactionsEnabled);
+  script.setAttribute("data-emit-metadata", config.emitMetadata);
+  script.setAttribute("data-input-position", config.inputPosition);
   script.setAttribute("data-theme", config.theme);
   script.setAttribute("data-lang", config.lang);
 

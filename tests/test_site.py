@@ -63,6 +63,9 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn("section.dataset.repoId", script)
         self.assertIn("section.dataset.category", script)
         self.assertIn("section.dataset.categoryId", script)
+        self.assertIn("section.dataset.lang", script)
+        self.assertIn("section.dataset.mapping", script)
+        self.assertIn("section.dataset.theme", script)
 
     def test_markdown_content_contains_sections_and_fields(self):
         content = (ROOT / "content" / "reading.md").read_text(encoding="utf-8")
@@ -78,6 +81,9 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn('data-repo-id="', html)
         self.assertIn('data-category="', html)
         self.assertIn('data-category-id="', html)
+        self.assertIn('data-lang="zh-CN"', html)
+        self.assertIn('data-mapping="pathname"', html)
+        self.assertIn('data-theme="preferred_color_scheme"', html)
 
 
 if __name__ == "__main__":
