@@ -412,7 +412,7 @@ function initComments() {
     categoryId: section.dataset.giscusCategoryId || section.dataset.categoryId || "",
     mapping: section.dataset.mapping || section.dataset.giscusMapping || "pathname",
     lang: section.dataset.lang || section.dataset.giscusLang || "zh-CN",
-    theme: section.dataset.theme || section.dataset.giscusTheme || "preferred_color_scheme",
+    theme: section.dataset.theme || section.dataset.giscusTheme || "light",
     strict: section.dataset.strict || "0",
     reactionsEnabled: section.dataset.reactionsEnabled || "1",
     emitMetadata: section.dataset.emitMetadata || "0",

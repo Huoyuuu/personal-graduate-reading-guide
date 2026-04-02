@@ -83,7 +83,8 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn('data-category-id="', html)
         self.assertIn('data-lang="zh-CN"', html)
         self.assertIn('data-mapping="pathname"', html)
-        self.assertIn('data-theme="preferred_color_scheme"', html)
+        self.assertIn('data-theme="light"', html)
+        self.assertNotIn("配置完成后", html)
 
 
 if __name__ == "__main__":
