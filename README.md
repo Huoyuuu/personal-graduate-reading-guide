@@ -6,7 +6,7 @@
 
 - `index.html`：首页 / 入口页
 - `reading.html`：阅读导航页
-- `links.html`：后续补充 URL 的预留页
+- `links.html`：常用链接与站点入口页
 - `content/reading.md`：阅读书目主内容来源
 
 仓库地址：

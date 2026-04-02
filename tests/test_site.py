@@ -25,6 +25,7 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn('href="./reading.html"', html)
         self.assertNotIn('id="resource-entry"', html)
         self.assertNotIn("查看更新", html)
+        self.assertNotIn("预留 Links 页面", html)
 
     def test_reading_page_is_markdown_driven(self):
         html = (ROOT / "reading.html").read_text(encoding="utf-8")
@@ -36,9 +37,13 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn('data-giscus-container', html)
         self.assertNotIn('<li class="reading-item">', html)
 
-    def test_links_page_contains_placeholder_region(self):
+    def test_links_page_contains_site_link(self):
         html = (ROOT / "links.html").read_text(encoding="utf-8")
-        self.assertIn('id="links-placeholder"', html)
+        self.assertIn('id="site-links"', html)
+        self.assertIn("https://huoyuuu.github.io/personal-graduate-reading-guide/", html)
+        self.assertNotIn("LINKS PLACEHOLDER", html)
+        self.assertNotIn("占位符", html)
+        self.assertNotIn("待添加链接", html)
 
     def test_stylesheet_contains_design_tokens(self):
         css = (ROOT / "assets" / "styles.css").read_text(encoding="utf-8")
@@ -85,6 +90,8 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn('data-mapping="pathname"', html)
         self.assertIn('data-theme="light"', html)
         self.assertNotIn("配置完成后", html)
+        self.assertNotIn("这里预留了", html)
+        self.assertNotIn("还没有配置评论区", html)
 
 
 if __name__ == "__main__":
