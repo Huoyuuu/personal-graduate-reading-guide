@@ -69,7 +69,7 @@
 作者：Simon Peyton Jones
 难度：★☆☆☆☆
 状态：待整理
-简介：[https://www.cis.upenn.edu/~sweirich/talks/plmw15-giving-a-talk.pdf](https://www.cis.upenn.edu/~sweirich/talks/plmw15-giving-a-talk.pdf)侧重讲解怎样做汇报
+简介：[https://simon.peytonjones.org/assets/pdfs/giving-a-talk.pdf](https://simon.peytonjones.org/assets/pdfs/giving-a-talk.pdf)侧重讲解怎样做汇报
 我的想法：
 
 ## 较艰深的大部头书
