@@ -58,6 +58,11 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn("initComments", script)
         self.assertNotIn("String.fromCharCode", script)
         self.assertIn('String(itemIndex + 1).padStart(2, "0")', script)
+        self.assertIn("个人思考", script)
+        self.assertIn("section.dataset.repo", script)
+        self.assertIn("section.dataset.repoId", script)
+        self.assertIn("section.dataset.category", script)
+        self.assertIn("section.dataset.categoryId", script)
 
     def test_markdown_content_contains_sections_and_fields(self):
         content = (ROOT / "content" / "reading.md").read_text(encoding="utf-8")
@@ -69,10 +74,10 @@ class SiteStructureTests(unittest.TestCase):
 
     def test_reading_page_contains_comment_config_placeholders(self):
         html = (ROOT / "reading.html").read_text(encoding="utf-8")
-        self.assertIn('data-giscus-repo="[在这里填写 owner/repo]"', html)
-        self.assertIn('data-giscus-repo-id="[在这里填写 repo id]"', html)
-        self.assertIn('data-giscus-category="[在这里填写 discussion 分类名]"', html)
-        self.assertIn('data-giscus-category-id="[在这里填写 category id]"', html)
+        self.assertIn('data-repo="', html)
+        self.assertIn('data-repo-id="', html)
+        self.assertIn('data-category="', html)
+        self.assertIn('data-category-id="', html)
 
 
 if __name__ == "__main__":

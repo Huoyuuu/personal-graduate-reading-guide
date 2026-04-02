@@ -319,7 +319,7 @@ function renderReadingSection(section, sectionIndex) {
             ${fields["作者"] ? `<p class="reading-author">作者：${renderInlineMarkdown(fields["作者"])}</p>` : ""}
             ${fields["简介"] ? renderDescriptionBlock(fields["简介"]) : ""}
             <details>
-              <summary>展开看我的想法</summary>
+              <summary>个人思考</summary>
               <p>${renderInlineMarkdown(getItemThought(fields))}</p>
             </details>
           </article>
@@ -406,10 +406,10 @@ function initComments() {
   }
 
   const config = {
-    repo: section.dataset.giscusRepo || "",
-    repoId: section.dataset.giscusRepoId || "",
-    category: section.dataset.giscusCategory || "",
-    categoryId: section.dataset.giscusCategoryId || "",
+    repo: section.dataset.giscusRepo || section.dataset.repo || "",
+    repoId: section.dataset.giscusRepoId || section.dataset.repoId || "",
+    category: section.dataset.giscusCategory || section.dataset.category || "",
+    categoryId: section.dataset.giscusCategoryId || section.dataset.categoryId || "",
     mapping: section.dataset.giscusMapping || "pathname",
     lang: section.dataset.giscusLang || "zh-CN",
     theme: section.dataset.giscusTheme || "preferred_color_scheme",
