@@ -51,7 +51,11 @@ function buildExternalLink(url, label, className = "inline-link") {
   return `<a class="${className}" href="${url}" target="_blank" rel="noreferrer">${label}</a>`;
 }
 
-function renderInlineMarkdown(text = "") {
+function isBreakOnlyLine(text = "") {
+  return /^<br\s*\/?>$/i.test(text.trim());
+}
+
+function renderInlineFragment(text = "") {
   let working = escapeHtml(text.trim());
   const placeholders = [];
 
@@ -71,13 +75,37 @@ function renderInlineMarkdown(text = "") {
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/\*([^*]+)\*/g, "<em>$1</em>")
     .replace(/`([^`]+)`/g, "<code>$1</code>")
-    .replace(/\n/g, "<br>");
+    .replace(/&lt;br\s*\/?&gt;/gi, "<br>");
 
   placeholders.forEach((html, index) => {
     working = working.replace(`__LINK_${index}__`, html);
   });
 
   return working;
+}
+
+function renderInlineMarkdown(text = "") {
+  const lines = text
+    .trim()
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  const parts = [];
+
+  lines.forEach((line) => {
+    if (isBreakOnlyLine(line)) {
+      parts.push("<br>");
+      return;
+    }
+
+    if (parts.length && parts[parts.length - 1] !== "<br>") {
+      parts.push("<br>");
+    }
+    parts.push(renderInlineFragment(line));
+  });
+
+  return parts.join("");
 }
 
 function extractLinksFromText(text = "") {
@@ -94,7 +122,18 @@ function extractLinksFromText(text = "") {
     return " ";
   });
 
-  remaining = remaining.replace(/\s{2,}/g, " ").trim();
+  remaining = remaining
+    .split("\n")
+    .map((line) => {
+      if (isBreakOnlyLine(line)) {
+        return "<br>";
+      }
+      return line.replace(/\s{2,}/g, " ").trim();
+    })
+    .filter((line) => line || isBreakOnlyLine(line))
+    .join("\n")
+    .trim();
+
   return { text: remaining, links };
 }
 

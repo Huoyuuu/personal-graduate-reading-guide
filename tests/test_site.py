@@ -64,6 +64,8 @@ class SiteStructureTests(unittest.TestCase):
         self.assertNotIn("String.fromCharCode", script)
         self.assertIn('String(itemIndex + 1).padStart(2, "0")', script)
         self.assertIn("个人思考", script)
+        self.assertIn("isBreakOnlyLine", script)
+        self.assertIn("renderInlineFragment", script)
         self.assertIn("section.dataset.repo", script)
         self.assertIn("section.dataset.repoId", script)
         self.assertIn("section.dataset.category", script)
