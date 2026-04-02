@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>搜集到的参考阅读书目</title>
+    <meta
+      name="description"
+      content="按由易到难整理的研0阅读导航页，包含简洁说明与可展开的个人想法。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body data-page="reading">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="./index.html">Huoyuuu</a>
+        <nav class="nav">
+          <a href="./index.html">首页</a>
+          <a href="./reading.html">阅读导航</a>
+          <a href="./links.html">Links</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container reading-page">
+      <section class="page-intro">
+        <p class="eyebrow">READING NAVIGATION</p>
+        <h1 data-reading-title>搜集到的参考阅读书目</h1>
+        <p class="intro-text" data-reading-intro>
+          正在从 Markdown 加载阅读书目……
+        </p>
+        <div class="intro-chips">
+          <span>面向：<strong data-reading-audience>研0</strong></span>
+          <span>顺序：<strong data-reading-order>由易到难</strong></span>
+          <span>当前条目：<strong data-reading-count>0</strong></span>
+        </div>
+      </section>
+
+      <section class="section-block share-block" id="share-reading-link">
+        <div class="section-heading">
+          <p class="eyebrow">SHARE THIS PAGE</p>
+          <h2>阅读导航直链</h2>
+          <p class="section-note">
+            一键分享链接。
+          </p>
+        </div>
+        <div class="share-row">
+          <input
+            class="share-input"
+            data-share-url
+            type="text"
+            readonly
+            value="./reading.html"
+            aria-label="阅读导航分享链接"
+          />
+          <button class="button button-secondary" type="button" data-copy-link>
+            复制链接
+          </button>
+        </div>
+        <p class="share-tip" data-copy-feedback>
+          本地预览时会显示 localhost 地址；部署后会自动显示正式链接。
+        </p>
+      </section>
+
+      <div
+        id="reading-content"
+        data-reading-source="./content/reading.md"
+        aria-live="polite"
+      >
+        <div class="loading-card">正在加载阅读书目……</div>
+      </div>
+
+      <section
+        class="section-block comments-block"
+        id="comments"
+        data-giscus-repo="[在这里填写 owner/repo]"
+        data-giscus-repo-id="[在这里填写 repo id]"
+        data-giscus-category="[在这里填写 discussion 分类名]"
+        data-giscus-category-id="[在这里填写 category id]"
+        data-giscus-mapping="pathname"
+        data-giscus-lang="zh-CN"
+        data-giscus-theme="preferred_color_scheme"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">COMMENTS</p>
+          <h2>评论与补充</h2>
+          <p class="section-note">
+            这里预留了GitHub账号评论区。配置完成后，组内同学可以直接用 GitHub 账号留言、补链接或提醒更新。
+          </p>
+        </div>
+        <div class="giscus-shell" data-comments-setup>
+          还没有配置评论区。等仓库名、repo id、discussion分类信息填进
+          <code>reading.html</code> 后，这里就会自动显示 GitHub 评论区。
+        </div>
+        <div class="giscus" data-giscus-container></div>
+      </section>
+
+      <noscript>
+        <section class="section-block">
+          <p class="section-note">
+            这个页面需要开启 JavaScript，才能从 Markdown 文件加载内容。
+          </p>
+        </section>
+      </noscript>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span data-year></span> Huoyuuu</p>
+        <p><a href="./index.html">返回首页</a></p>
+      </div>
+    </footer>
+
+    <script src="./assets/script.js"></script>
+  </body>
+</html>

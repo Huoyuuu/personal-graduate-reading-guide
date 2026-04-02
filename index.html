@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Huoyuuu | 资源入口</title>
+    <meta
+      name="description"
+      content="一个简洁克制的个人资源入口页，当前以阅读导航为主。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body data-page="home">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="./index.html">Huoyuuu</a>
+        <nav class="nav">
+          <a href="./index.html">首页</a>
+          <a href="./reading.html">阅读导航</a>
+          <a href="./links.html">Links</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">RESOURCE-FIRST BLOG</p>
+          <h1 id="site-name">Huoyuuu</h1>
+          <p class="hero-lead">阅读、整理与分享</p>
+          <p class="hero-note">
+            先把阅读导航整理出来，方便自己维护，也方便后面直接把阅读页单独发给同学。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="./reading.html">进入阅读导航</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block" id="updates">
+        <div class="section-heading">
+          <p class="eyebrow">RECENT UPDATES</p>
+          <h2>更新记录</h2>
+        </div>
+        <ul class="updates-list" id="updates-list">
+          <li>
+            <span class="update-date">2026-04-02</span>
+            <span class="update-text">搭建首页基础结构，保留后续博客扩展空间。</span>
+          </li>
+          <li>
+            <span class="update-date">2026-04-02</span>
+            <span class="update-text">上线“搜集到的参考阅读书目”阅读导航页。</span>
+          </li>
+          <li>
+            <span class="update-date">2026-04-02</span>
+            <span class="update-text">预留 Links 页面，方便后续直接添加 URL。</span>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span data-year></span>Huoyuuu</p>
+        <p>GitHub Pages · 静态页面</p>
+      </div>
+    </footer>
+
+    <script src="./assets/script.js"></script>
+  </body>
+</html>
