@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>研究技能书单</title>
+    <title>意义与方向书单</title>
     <meta
       name="description"
-      content="面向研0阶段的实用阅读导航，按阅读、复现、出idea和做汇报分类整理。"
+      content="关于动力、倦怠、时间与意义的阅读书单，由浅入深排列。"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,7 +16,7 @@
     />
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
-  <body data-page="reading">
+  <body data-page="meaning">
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="./index.html">Huoyuuu</a>
@@ -32,13 +32,13 @@
       <section class="page-intro">
         <p class="eyebrow">READING NAVIGATION</p>
         <a class="back-link" href="./catalog.html">&larr; 返回目录</a>
-        <h1 data-reading-title>研究技能书单</h1>
+        <h1 data-reading-title>意义与方向书单</h1>
         <p class="intro-text" data-reading-intro>
           正在从 Markdown 加载阅读书目……
         </p>
         <div class="intro-chips">
-          <span>面向：<strong data-reading-audience>研0</strong></span>
-          <span>顺序：<strong data-reading-order>由易到难</strong></span>
+          <span>面向：<strong data-reading-audience>研究生</strong></span>
+          <span>顺序：<strong data-reading-order>由浅入深</strong></span>
           <span>当前条目：<strong data-reading-count>0</strong></span>
           <span class="progress-stats" data-progress-stats></span>
         </div>
@@ -64,35 +64,9 @@
         </details>
       </div>
 
-      <section class="section-block share-block" id="share-reading-link">
-        <div class="section-heading">
-          <p class="eyebrow">SHARE THIS PAGE</p>
-          <h2>阅读导航直链</h2>
-          <p class="section-note">
-            一键分享链接。
-          </p>
-        </div>
-        <div class="share-row">
-          <input
-            class="share-input"
-            data-share-url
-            type="text"
-            readonly
-            value="./reading.html"
-            aria-label="阅读导航分享链接"
-          />
-          <button class="button button-secondary" type="button" data-copy-link>
-            复制链接
-          </button>
-        </div>
-        <p class="share-tip" data-copy-feedback>
-          本地预览时会显示 localhost 地址；部署后会自动显示正式链接。
-        </p>
-      </section>
-
       <div
         id="reading-content"
-        data-reading-source="./content/reading.md"
+        data-reading-source="./content/meaning.md"
         aria-live="polite"
       >
         <div class="loading-card">正在加载阅读书目……</div>

@@ -1,5 +1,5 @@
-# 搜集到的参考阅读书目
-简介：在复现综述论文时跑GPU发现等待时间较久，期间无事可做，决定预先把有帮助的书目整理成导航网站，确保等待时可以有明确安排。考虑到现在还在研0复现阶段，下面按阅读、复现、自己出idea和最终做汇报四个分类做书目推荐，部分有价值但较难读的书目放到最后。站点启用了Github的评论区功能，欢迎各位提交建议或者直接提交pr，后者只需修改[仓库]()中content的reading.md文件即可。
+# 研究技能书单
+简介：面向研0阶段的实用材料，按阅读、复现、自己出idea和做汇报四个环节整理，部分较难的大部头留档供后续阅读。站点启用了Github的评论区功能，欢迎各位提交建议或者直接提交pr，后者只需修改[仓库]()中content的reading.md文件即可。
 面向：研0
 顺序：由易到难
 
@@ -57,7 +57,7 @@
 简介：[https://library.uniq.edu.iq/storage/books/file/The%20Craft%20of%20Research/1667121038craft.pdf](https://library.uniq.edu.iq/storage/books/file/The%20Craft%20of%20Research/1667121038craft.pdf)
 我的想法：
 
-### A Graduate School Survival Guide: “So Long, and Thanks for the Ph.D!”
+### A Graduate School Survival Guide: "So Long, and Thanks for the Ph.D!"
 作者：Ronald T. Azuma
 难度：★★☆☆☆
 状态：待整理

@@ -1,13 +1,10 @@
 # 个人的研究生阅读书目推荐
 
-这是一个部署在 **GitHub Pages** 上的静态站点，用来整理一份面向 **研0阶段** 的阅读导航。
+这是一个部署在 **GitHub Pages** 上的静态站点，用来整理面向研究生阶段的阅读导航。当前包含三份书单：
 
-当前站点包含：
-
-- `index.html`：首页 / 入口页
-- `reading.html`：阅读导航页
-- `links.html`：常用链接与站点入口页
-- `content/reading.md`：阅读书目主内容来源
+- **研究技能书单**：阅读、复现、出 idea、做汇报相关的实用材料
+- **意义与方向书单**：关于动力、倦怠、时间与意义的书
+- **思维方法书单**：学习方法、研究方法、判断与知识论
 
 仓库地址：
 
@@ -15,103 +12,81 @@
 
 ---
 
-## 1. 如何更新阅读页
-阅读导航页是 **Markdown 驱动** 的。  
-后续如果要增删改书目，主要编辑：
+## 站点结构
 
 ```text
-content/reading.md
+├── index.html              首页 / 入口页
+├── catalog.html            书单目录页（含跨书单搜索）
+├── reading.html            研究技能书单
+├── meaning.html            意义与方向书单
+├── methods.html            思维方法书单
+├── links.html              常用链接与站点入口
+├── content/
+│   ├── reading.md          研究技能书单内容
+│   ├── meaning.md          意义与方向书单内容
+│   └── methods.md          思维方法书单内容
+├── assets/
+│   ├── styles.css          样式
+│   └── script.js           所有交互逻辑
+└── tests/
+    └── test_site.py        结构测试
 ```
-
-`reading.html` 会自动读取并解析这个文件。
 
 ---
 
-## 2. 当前 `reading.md` 的结构
-页面本身用一级标题
+## 功能
+
+- **Markdown 驱动**：书单内容全部写在 `content/*.md` 里，页面自动解析渲染
+- **跨书单搜索**：在目录页搜索框输入关键词，搜索所有三份书单的书名、作者和简介
+- **页内搜索 + 筛选**：每个书单详情页有独立的搜索框和难度/状态筛选 chips
+- **阅读进度追踪**：每本书旁边有进度按钮（待读→在读→读完），状态存在浏览器 localStorage
+- **页面内目录**：可折叠的迷你 TOC，点击跳转到对应分类
+- **评论区**：通过 Giscus 接入 GitHub Discussions
+
+---
+
+## 如何更新书目
+
+编辑对应的 Markdown 文件：
+
+| 书单 | 文件 |
+|------|------|
+| 研究技能 | `content/reading.md` |
+| 意义与方向 | `content/meaning.md` |
+| 思维方法 | `content/methods.md` |
+
+每个条目的格式：
+
 ```md
-# 搜集到的参考阅读书目
-简介：这里写页面说明
-面向：研0
-顺序：由易到难
-```
-
-每个分类用二级标题：
-
-```md
-## 阅读
-```
-
-每本材料用三级标题加字段：
-
-```md
-### How to Read a Paper
-作者：S. Keshav
-难度：★☆☆☆☆
-状态：待整理
-简介：[论文链接](https://example.com/paper.pdf)
+### 书名
+作者：作者名
+难度：★★☆☆☆
+状态：待读
+简介：一两句话说清楚这本书讲什么。[可选链接](https://example.com)
 我的想法：
 ```
 
 ---
 
-## 3. 字段约定
-
-### 使用字段
-
-- `作者`
-- `难度`
-- `状态`
-- `简介`
-- `我的想法`
----
-
-## 4. 链接怎么写
-
-`简介` 字段里可以直接放链接，推荐写成 Markdown 链接：
-
-```md
-简介：[How to Read a Paper](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf)
-```
-页面会自动把这些链接整理成更适合阅读的链接样式。
-如果链接后面还有补充说明，也可以直接写在同一行：
-
-```md
-简介：[讲稿链接](https://example.com/talk.pdf) 侧重讲解怎样做汇报
-```
-
----
-
-## 5. 如何通过评论或 PR 提建议
-
-阅读页底部已经接入 GitHub 账号评论区。  
-如果只是想补充建议、提醒更新、推荐新材料，可以直接到阅读页底部评论。
-如果需要直接修改内容，最直接的方法是提交 PR，主要改：
-```text
-content/reading.md
-```
----
-
-## 6. 本地预览
-
-如果你本地有 Python，可以在当前目录运行：
+## 本地预览
 
 ```bash
 python -m http.server 8000
 ```
 
-然后访问：
-
-```text
-http://localhost:8000
-```
-
-注意：因为 `reading.html` 要通过 `fetch` 读取 `content/reading.md`，所以**不要直接双击 HTML 文件打开**，而要用本地服务器预览。
+然后访问 `http://localhost:8000`。不要直接双击 HTML 文件，因为页面需要 `fetch` 读取 Markdown。
 
 ---
 
-## 7. 线上地址
+## 运行测试
 
-GitHub Pages 地址：
+```bash
+python -m pytest tests/test_site.py -v
+```
+
+---
+
+## 线上地址
+
 - 首页：<https://huoyuuu.github.io/personal-graduate-reading-guide/>
-- 阅读页：<https://huoyuuu.github.io/personal-graduate-reading-guide/reading.html>
+- 书单目录：<https://huoyuuu.github.io/personal-graduate-reading-guide/catalog.html>

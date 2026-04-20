@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>书单目录 | Huoyuuu</title>
+    <meta
+      name="description"
+      content="三份阅读书单的目录页，含跨书单搜索。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body data-page="catalog">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="./index.html">Huoyuuu</a>
+        <nav class="nav">
+          <a href="./index.html">首页</a>
+          <a href="./catalog.html">书单目录</a>
+          <a href="./links.html">Links</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container catalog-page">
+      <section class="page-intro">
+        <p class="eyebrow">READING CATALOG</p>
+        <h1>书单目录</h1>
+        <p class="intro-text">
+          三份书单，分别覆盖研究技能、意义与方向、思维方法。可以在下方搜索框跨书单检索。
+        </p>
+      </section>
+
+      <section class="section-block filter-block" id="catalog-search-section">
+        <div class="filter-row">
+          <input
+            class="search-input"
+            type="text"
+            placeholder="跨书单搜索书名、作者或简介…"
+            data-catalog-search
+            aria-label="跨书单搜索"
+          />
+        </div>
+      </section>
+
+      <div id="catalog-cards" data-catalog-cards>
+        <div class="catalog-grid">
+          <article class="catalog-card" data-catalog-item data-href="./reading.html" data-source="./content/reading.md">
+            <p class="eyebrow">BOOK LIST 01</p>
+            <h2>研究技能书单</h2>
+            <p class="catalog-desc">面向研0阶段的实用材料，按阅读、复现、出idea和做汇报分类整理。</p>
+            <div class="catalog-meta">
+              <span data-catalog-count>加载中…</span>
+            </div>
+            <a class="button button-primary catalog-enter" href="./reading.html">进入书单 &rarr;</a>
+          </article>
+
+          <article class="catalog-card" data-catalog-item data-href="./meaning.html" data-source="./content/meaning.md">
+            <p class="eyebrow">BOOK LIST 02</p>
+            <h2>意义与方向书单</h2>
+            <p class="catalog-desc">关于动力、倦怠、时间与意义，由实用心理学到哲学文学。</p>
+            <div class="catalog-meta">
+              <span data-catalog-count>加载中…</span>
+            </div>
+            <a class="button button-primary catalog-enter" href="./meaning.html">进入书单 &rarr;</a>
+          </article>
+
+          <article class="catalog-card" data-catalog-item data-href="./methods.html" data-source="./content/methods.md">
+            <p class="eyebrow">BOOK LIST 03</p>
+            <h2>思维方法书单</h2>
+            <p class="catalog-desc">怎么学、怎么读、怎么提问、怎么理解知识增长，由实用到抽象。</p>
+            <div class="catalog-meta">
+              <span data-catalog-count>加载中…</span>
+            </div>
+            <a class="button button-primary catalog-enter" href="./methods.html">进入书单 &rarr;</a>
+          </article>
+        </div>
+      </div>
+
+      <div id="catalog-search-results" data-catalog-results hidden>
+        <div class="section-heading">
+          <p class="eyebrow">SEARCH RESULTS</p>
+          <h2 data-results-title>搜索结果</h2>
+        </div>
+        <ol class="reading-list" data-results-list></ol>
+        <p class="section-note" data-results-empty hidden>没有找到匹配的书目。</p>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span data-year></span> Huoyuuu</p>
+        <p><a href="./index.html">返回首页</a></p>
+      </div>
+    </footer>
+
+    <script src="./assets/script.js"></script>
+  </body>
+</html>

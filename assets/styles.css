@@ -15,6 +15,9 @@
   --radius-md: 20px;
   --radius-sm: 14px;
   --container: min(1080px, calc(100vw - 32px));
+  --progress-todo: #a0937d;
+  --progress-reading: #5b8a72;
+  --progress-done: #3d7a5f;
 }
 
 * {
@@ -120,7 +123,8 @@ img {
 .hero-copy,
 .section-block,
 .page-intro,
-.link-card {
+.link-card,
+.catalog-card {
   position: relative;
   background: var(--surface);
   border: 1px solid var(--line);
@@ -194,6 +198,8 @@ h3 {
   border-radius: 999px;
   border: 1px solid transparent;
   font-weight: 500;
+  cursor: pointer;
+  font: inherit;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
@@ -302,6 +308,17 @@ h3 {
   margin-top: 34px;
 }
 
+.back-link {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 0.92rem;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
 .intro-chips {
   display: flex;
   flex-wrap: wrap;
@@ -316,6 +333,261 @@ h3 {
   border: 1px solid var(--line);
   color: var(--muted);
 }
+
+.progress-stats:empty {
+  display: none;
+}
+
+/* ── Search & Filter ── */
+
+.filter-block {
+  padding: 20px 32px;
+}
+
+.filter-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255, 252, 247, 0.92);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.98rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+}
+
+.search-input::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  align-items: center;
+}
+
+.filter-chips:empty {
+  display: none;
+}
+
+.filter-group-label {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin-right: 2px;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(255, 250, 242, 0.92);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.filter-chip:hover {
+  border-color: rgba(123, 93, 73, 0.34);
+}
+
+.filter-chip.is-active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ── Mini TOC ── */
+
+.mini-toc-wrapper {
+  margin-bottom: 20px;
+}
+
+.mini-toc {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 16px 24px;
+  box-shadow: var(--shadow);
+}
+
+.mini-toc summary {
+  font-size: 0.95rem;
+}
+
+.mini-toc ol {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 6px;
+}
+
+.mini-toc a {
+  color: var(--accent);
+  font-size: 0.94rem;
+}
+
+.mini-toc a:hover {
+  text-decoration: underline;
+}
+
+/* ── Back to Top ── */
+
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 30;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  color: var(--accent);
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(58, 41, 25, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  transform: translateY(-2px);
+}
+
+/* ── Progress Button ── */
+
+.item-footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.item-footer details {
+  flex: 1;
+  min-width: 0;
+}
+
+.progress-btn {
+  flex-shrink: 0;
+  margin-top: 14px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 250, 242, 0.92);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.84rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.progress-btn:hover {
+  border-color: rgba(123, 93, 73, 0.34);
+}
+
+.progress-btn.progress-todo {
+  background: rgba(160, 147, 125, 0.12);
+  border-color: var(--progress-todo);
+  color: var(--progress-todo);
+}
+
+.progress-btn.progress-reading {
+  background: rgba(91, 138, 114, 0.12);
+  border-color: var(--progress-reading);
+  color: var(--progress-reading);
+}
+
+.progress-btn.progress-done {
+  background: rgba(61, 122, 95, 0.15);
+  border-color: var(--progress-done);
+  color: var(--progress-done);
+}
+
+/* ── Catalog Page ── */
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.catalog-card {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.catalog-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(123, 93, 73, 0.28);
+}
+
+.catalog-desc {
+  color: var(--muted);
+  flex: 1;
+}
+
+.catalog-meta {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-bottom: 4px;
+}
+
+.catalog-enter {
+  align-self: flex-start;
+  font-size: 0.92rem;
+  min-height: 40px;
+  padding: 0 18px;
+}
+
+.search-source-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.search-source-tag:hover {
+  text-decoration: underline;
+}
+
+/* ── Reading Items ── */
 
 .reading-list {
   list-style: none;
@@ -535,7 +807,8 @@ details p {
     padding-top: 36px;
   }
 
-  .links-grid {
+  .links-grid,
+  .catalog-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -551,9 +824,14 @@ details p {
   .hero-copy,
   .section-block,
   .page-intro,
-  .link-card {
+  .link-card,
+  .catalog-card {
     padding: 22px;
     border-radius: 22px;
+  }
+
+  .filter-block {
+    padding: 16px 22px;
   }
 
   .updates-list li {
@@ -573,5 +851,19 @@ details p {
   .share-row {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .item-footer {
+    flex-direction: column;
+  }
+
+  .progress-btn {
+    align-self: flex-end;
+    margin-top: 0;
+  }
+
+  .back-to-top {
+    bottom: 20px;
+    right: 16px;
   }
 }
