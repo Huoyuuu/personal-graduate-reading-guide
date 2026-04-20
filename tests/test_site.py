@@ -102,6 +102,7 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn("parseReadingMarkdown", script)
         self.assertIn("还没读完，之后补。", script)
         self.assertIn("fetch(", script)
+        self.assertIn("fetchTextFile", script)
         self.assertIn("extractLinksFromText", script)
         self.assertIn("initComments", script)
         self.assertIn("isBreakOnlyLine", script)
@@ -114,7 +115,8 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn("section.dataset.mapping", script)
         self.assertIn("section.dataset.theme", script)
         self.assertIn("个人思考", script)
-        self.assertIn('String(itemIndex + 1).padStart(2, "0")', script)
+        self.assertIn("zeroPadNumber", script)
+        self.assertNotIn(".replaceAll(", script)
 
     def test_script_contains_new_features(self):
         script = (ROOT / "assets" / "script.js").read_text(encoding="utf-8")
@@ -138,6 +140,7 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn("### How to Read a Paper", content)
         self.assertIn("作者：", content)
         self.assertIn("状态：", content)
+        self.assertIn("https://github.com/Huoyuuu/personal-graduate-reading-guide", content)
 
     def test_meaning_md_has_sections_and_fields(self):
         content = (ROOT / "content" / "meaning.md").read_text(encoding="utf-8")

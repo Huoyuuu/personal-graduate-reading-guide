@@ -34,16 +34,37 @@ if (copyButton && shareInput) {
 // ── Utilities ──
 
 function escapeHtml(text = "") {
-  return text
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function buildExternalLink(url, label, className = "inline-link") {
   return `<a class="${className}" href="${url}" target="_blank" rel="noreferrer">${label}</a>`;
+}
+
+function zeroPadNumber(value) {
+  const normalized = Number(value);
+  if (!Number.isFinite(normalized)) return "00";
+  return normalized < 10 ? `0${normalized}` : String(normalized);
+}
+
+function resolveUrl(path = "") {
+  try {
+    return new URL(path, window.location.href).toString();
+  } catch {
+    return path;
+  }
+}
+
+async function fetchTextFile(path) {
+  const url = resolveUrl(path);
+  const response = await fetch(url, { cache: "no-store" });
+  if (!response.ok) throw new Error(`Failed to load ${url} (${response.status})`);
+  return response.text();
 }
 
 function isBreakOnlyLine(text = "") {
@@ -300,7 +321,7 @@ function getItemThought(fields) {
 }
 
 function buildItemIndex(itemIndex) {
-  return String(itemIndex + 1).padStart(2, "0");
+  return zeroPadNumber(itemIndex + 1);
 }
 
 function slugify(text) {
@@ -312,7 +333,7 @@ function slugify(text) {
 }
 
 function renderReadingSection(section, sectionIndex) {
-  const label = sectionIndex === 0 ? "MAIN ROUTE" : `SECTION ${String(sectionIndex + 1).padStart(2, "0")}`;
+  const label = sectionIndex === 0 ? "MAIN ROUTE" : `SECTION ${zeroPadNumber(sectionIndex + 1)}`;
   const sectionNote = section.meta["说明"] || "";
   const sectionId = `section-${slugify(section.title) || sectionIndex}`;
   const listClass =
@@ -534,14 +555,13 @@ async function initCatalog() {
     const source = card.dataset.source;
     const countEl = card.querySelector("[data-catalog-count]");
     try {
-      const resp = await fetch(source, { cache: "no-store" });
-      if (!resp.ok) throw new Error(`Failed to load ${source}`);
-      const md = await resp.text();
+      const md = await fetchTextFile(source);
       const data = parseReadingMarkdown(md);
       const total = data.sections.reduce((sum, s) => sum + s.items.length, 0);
       if (countEl) countEl.textContent = `共 ${total} 本`;
       allData.push({ source, href: card.dataset.href, data });
-    } catch {
+    } catch (error) {
+      console.error("Failed to initialize catalog card:", source, error);
       if (countEl) countEl.textContent = "加载失败";
     }
   }
@@ -640,10 +660,7 @@ async function initReadingContent() {
   const countNode = document.querySelector("[data-reading-count]");
 
   try {
-    const response = await fetch(source, { cache: "no-store" });
-    if (!response.ok) throw new Error(`Failed to load ${source}`);
-
-    const markdown = await response.text();
+    const markdown = await fetchTextFile(source);
     const data = parseReadingMarkdown(markdown);
 
     if (titleNode && data.title) {
@@ -664,15 +681,18 @@ async function initReadingContent() {
     initMiniToc();
     initProgressButtons();
     updateProgressStats();
-  } catch {
+  } catch (error) {
+    console.error("Failed to initialize reading content:", source, error);
+    const fallbackUrl = resolveUrl(source);
     container.innerHTML = `
       <section class="section-block loading-card error-card">
         <h2>阅读书目加载失败</h2>
         <p class="section-note">
-          请确认你是通过本地服务器或 GitHub Pages 打开的页面，而不是直接双击 HTML 文件。
+          页面内容没有正常渲染，可能是 Markdown 请求失败、浏览器脚本兼容性问题，或者缓存了旧版脚本。
         </p>
+        ${source ? `<p class="section-note"><a class="inline-link" href="${fallbackUrl}" target="_blank" rel="noreferrer">直接打开原始 Markdown</a></p>` : ""}
       </section>`;
-    if (introNode) introNode.textContent = "Markdown 加载失败，请检查本地预览方式。";
+    if (introNode) introNode.textContent = "Markdown 或前端脚本加载失败，请刷新页面或清理缓存后重试。";
   }
 }
 
